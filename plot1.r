@@ -1,0 +1,6 @@
+houseData <- read.csv2("household_power_consumption.txt", colClasses = "character", na.strings = "?")
+houseData$Global_active_power <- as.numeric(houseData$Global_active_power)
+houseData <- subset(houseData, Date == "1/2/2007"|Date == "2/2/2007", select = Global_active_power )
+png(filename = "plot1.png")
+hist(houseData$Global_active_power, col = "red", xlab = "Global Active Power (kilowatts)", main = "Global Active Power")
+dev.off()

@@ -1,0 +1,7 @@
+houseData <- read.csv2("household_power_consumption.txt", colClasses = "character", na.strings = "?")
+houseData$Global_active_power <- as.numeric(houseData$Global_active_power)
+houseData <- subset(houseData, Date == "1/2/2007"|Date == "2/2/2007", select = c(Global_active_power, Date, Time) )
+datetime <- as.POSIXct(paste(houseData$Date, houseData$Time), format = "%d/%m/%Y %H:%M:%S")
+png(filename = "plot2.png")
+plot(datetime, houseData$Global_active_power, type = "l", ylab = "Global Active Power (killowatts)")
+dev.off()
